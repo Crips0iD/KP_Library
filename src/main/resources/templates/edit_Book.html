@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://bogatyr.club/uploads/posts/2023-03/1679015207_bogatyr-club-p-fon-staraya-biblioteka-foni-vkontakte-1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            color: #f5deb3;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #8b4513;
+            border-color: #8b4513;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #a0522d;
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #8b4513;
+            color: #f5deb3;
+        }
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #a0522d;
+            color: #f5deb3;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Кнопка возврата -->
+    <a href="/books/" class="btn btn-custom back-button">← На главную</a>
+
+    <div class="card">
+        <blockquote class="blockquote text-center mb-4">
+            <h1>Редактирование информации о книге</h1>
+        </blockquote>
+
+        <form th:action="@{/books/save}" th:object="${LibraryDB}" method="post">
+
+            <input type="hidden" th:field="*{bookID}">
+
+            <div class="mb-3">
+                <label class="form-label">Название:</label>
+                <input type="text" class="form-control" th:field="*{title}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Автор:</label>
+                <input type="text" class="form-control" th:field="*{author}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Жанр:</label>
+                <input type="text" class="form-control" th:field="*{category}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Год издания:</label>
+                <input type="text" class="form-control" th:field="*{yearPublished}">
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/books/" class="btn btn-custom">Отмена</a>
+                <button type="submit" class="btn btn-custom">Сохранить изменения</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
